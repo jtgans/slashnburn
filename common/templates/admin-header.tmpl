@@ -1,0 +1,66 @@
+{* -*- html -*- *}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+  <head>
+    <title>{$config->getKey('global/site_title')} .:. {$config->getKey('global/site_slogan')} :: Admin</title>
+    
+    <link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="/assets/admin.css">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+    <script type="text/javascript">
+      _editor_url = "{$config.global.base_url}/assets/htmlarea/";
+      _editor_lang = "en";
+    </script>
+    <script type="text/javascript" src="{$config.global.base_url}/assets/htmlarea/htmlarea.js"></script>
+    <script type="text/javascript">{literal}
+      HTMLArea.loadPlugin("ContextMenu");
+      HTMLArea.loadPlugin("TableOperations");
+
+      function initEditor(id)
+      {
+        var editor = new HTMLArea(id);
+
+        editor.registerPlugin(ContextMenu);
+        editor.registerPlugin(TableOperations);
+        editor.generate();
+
+        return true;
+      }
+    {/literal}</script>
+  </head>
+
+  <body>
+    <div id="bodyContainer">
+      <div id="header">
+        <h1 class="masthead">{$config->getKey('global/site_title')}</h1>
+        <h4 class="masthead">{$config->getKey('global/site_slogan')}</h4>
+      </div>
+
+      <div id="nav">
+{foreach from=$nav->getNav() item=row key=key}
+          <div class="navRow">
+  {if $nav->isSelectedNav($key)}
+            <a class="navSelected" href="/admin/{$row.module}/{$row.params}">{$row.caption}</a>
+    {if isset($row.children)}
+      {foreach from=$row.children item=child}
+              <a class="subnav" href="/admin/{$child.module}/{$child.params}">{$child.caption}</a>
+      {/foreach}
+    {/if}
+  {else}
+            <a class="nav" href="/admin/{$row.module}/{$row.params}">{$row.caption}</a>
+  {/if}
+          </div>
+{/foreach}
+        <div class="navRow">
+          <a class="nav" href="/admin/help">Help</a>
+        </div>
+        <div class="navRow">
+          <a class="nav" href="/admin/logout">Logout</a>
+        </div>
+      </div>
+
+      <div id="body">

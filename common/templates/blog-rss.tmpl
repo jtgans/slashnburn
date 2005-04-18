@@ -1,0 +1,34 @@
+{* -*- html -*- *}
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<rdf:RDF xmlns="http://purl.org/rss/1.0/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel rdf:about="{$config->getKey('global/base_url')}/blog/rss">
+    <title>{$config->getKey("global/site_title")}</title>
+    <description>{$config->getKey("global/site_slogan")}</description>
+    <link>{$config->getKey('global/base_url')}/blog</link>
+    
+    <dc:language>{$config->getKey('global/language')}</dc:language>
+    <dc:rights>Copyright {$smarty.now|date_format:"%Y"}, {$config->getKey('owner/first_name')} {$config->getKey('owner/last_name')}, All Rights Reserved.</dc:rights>
+    <dc:date>{$current_date}</dc:date>
+    <dc:creator>{$config->getKey('owner/email')}</dc:creator>
+
+    <items>
+      <rdf:Seq>
+{foreach item=entry from=$entries}
+        <rdf:li rdf:resource="{$config->getKey('global/base_url')}/blog/{$entry.blog_id}" />
+{/foreach}
+      </rdf:Seq>
+    </items>
+  </channel>
+
+{foreach item=entry from=$entries}
+  <item rdf:about="{$config->getKey('global/base_url')}/blog/{$entry.blog_id}">
+    <title>{$entry.title}</title>
+    <description>{$entry.body}</description>
+    <link>{$config->getKey('global/base_url')}/blog/{$entry.blog_id}</link>
+    
+    <dc:creator>{$config->getKey('owner/first_name')} {$config->getKey('owner/last_name')}</dc:creator>
+    <dc:date>{$entry.timestamp}</dc:date>
+  </item>
+{/foreach}
+</rdf:RDF>

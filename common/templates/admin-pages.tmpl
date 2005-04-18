@@ -1,0 +1,126 @@
+{* -*- html -*- *}
+{include file="admin-header.tmpl"}
+
+<div class="sectionHeader">
+  <h1 class="line">Custom Pages Management</h1>
+</div>
+
+<div class="form">
+  <div class="sectionHeader">
+    <h2 class="line">Edit Previous Pages</h2>
+  </div>
+
+  <table border="0" width="100%" cellspacing="1" cellpadding="0">
+    <tr>
+      <td class="label" width="30%">Select a Page</td>
+      <td class="input">
+        <form method="get" action="/admin/manage/pages/edit">
+          <select name="id" size="1" style="width: 90%">
+{foreach from=$pages item=page}
+            <option value="{$page.page_id}">{$page.title}</option>
+{/foreach}
+          </select>
+          <input type="submit" value="Go">
+        </form>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="form">
+  <form action="">
+    <div class="sectionHeader">
+      <h2 class="line">Add New Page</h2>
+    </div>
+
+    <table border="0" width="100%">
+      <tr>
+        <td width="30%" class="labelRequired">Title</td>
+        <td class="input"><input type="text" style="width: 100%" name="title"></td>
+      </tr>
+      <tr>
+        <td width="30%" class="labelRequired" valign="top">Navigation Postion</td>
+        <td>
+          <select name="nav_location" size="5" style="width: 100%">
+{foreach from=$livenav->getNav() item=row key=key}
+  {if $row.module == "pages"}
+            <option value="{$key}">{$row.caption}</option>
+    {if isset($row.children)}
+      {foreach from=$row.children item=child}
+              <option value="{$child.nav_id}">&nbsp;&nbsp;'-&nbsp;{$child.caption}</option>
+      {/foreach}
+    {/if}
+  {/if}
+{/foreach}
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td width="30%" class="label">Navigation Insert Method</td>
+        <td>
+          <select name="make_subnav" size="1" style="width: 100%">
+            <option value="0">Top-level, inserted Below</option>
+            <option value="1">Top-level, inserted Above</option>
+            <option value="2">Subnav, inserted Below</option>
+            <option value="3">Subnav, inserted Above</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td width="30%" class="label">Category</td>
+        <td class="input">
+          <select name="category_id" size="1" style="width: 100%">
+            <option value="">No Category</option>
+{foreach from=$categories item=category}
+            <option value="{$category.category_id}">{$category.name}</option>
+{/foreach}
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td width="30%" class="label">Display the Category</td>
+        <td class="input">
+          <select name="category_visible" size="1" style="width: 100%">
+            <option value="1" selected>Display the Category</option>
+            <option value="0">Do Not Display the Category</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td width="30%" class="label">Display the Timestamp</td>
+        <td class="input">
+          <select name="timestamp_visible" size="1" style="width: 100%">
+            <option value="1" selected>Display the Timestamp</option>
+            <option value="0">Do Not Display the Timestamp</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td width="30%" class="label">Display the Title</td>
+        <td class="input">
+          <select name="title_visible" size="1" style="width: 100%">
+            <option value="1" selected>Display the Title</option>
+            <option value="0">Do Not Display the Title</option>
+          </select>
+        </td>
+      </tr>
+    </table>
+
+    {* Have to do it this way because of IE's screwed up behavior *}
+    {* Sorry folks. =o(                        -- June            *}
+    {include file="htmlarea.tmpl"}
+
+    <table border="0" width="100%">
+      <tr>
+        <td colspan="2" class="formButtons">
+          <input type="button" name="preview" id="preview" value="Preview">
+          <input type="submit" name="submit" value="Post">
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+  
+{include file="admin-footer.tmpl"}
+
+    

@@ -1,0 +1,82 @@
+{* -*- html -*- *}
+{include file="header.tmpl"}
+
+<div class="sectionHeader">
+  <h1 class="line">{$entry.title}</h1>
+  <span class="subHead">Posted at {$entry.timestamp|date_format:"%l:%M %p"} on {$entry.timestamp|date_format:"%A, %B %e, %Y"}</span>
+</div>
+<div class="blogBody">{$entry.body}</div>
+
+<div class="sectionHeader">
+  <h1 class="line">Comments</h1>
+</div>
+<div class="comments">
+{if isset($entry.comments)}
+  {foreach from=$entry.comments item=comment}
+  <div class="commentEntry">
+    <div class="commentTitle">
+      <h3 class="line">{$comment.title}</h3>
+      <span class="subHead">Posted at {$comment.timestamp|date_format:"%l:%M %p"} on {$comment.timestamp|date_format:"%A, %B %e, %Y"} by {$comment.author} {if $comment.show_email == 1}&lt;{mailto address=$comment.email encode="hex"}&gt;{/if}</span>
+    </div>
+    <div class="commentBody">{$comment.body}</div>
+  </div>
+  {/foreach}
+</div>
+{/if}
+
+{if $entry.allow_comments == 2}
+<div class="commentForm">
+  <form method="post" action="/blog/{$entry.blog_id}">
+  {if isset($errors)}
+      <span class="formError">
+    {foreach item=error from=$errors}
+        {$error}
+    {/foreach}
+      </span>
+  {/if}
+    <div class="formRow">
+      <div class="formLabelRequired">Title</div>
+      <div class="formField">
+        <input style="width: 325px" type="text" name="title" value="Re: {$entry.title}">
+      </div>
+    </div>
+
+    <div class="formRow">
+      <div class="formLabelRequired">Name</div>
+      <div class="formField">
+        <input style="width: 325px" type="text" name="name" value="">
+      </div>
+    </div>
+
+    <div class="formRow">
+      <div class="formLabel">Email</div>
+      <div class="formField">
+        <input style="width: 325px" type="text" name="email" value="">
+      </div>
+    </div>
+
+    <div class="formRow">
+      <div class="formLabel">Show Email</div>
+      <div class="formField">
+        <select name="show_email" size="1">
+          <option value="0" selected>No, don't reveal my email address</option>
+          <option value="1">Yes, reveal my email address</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="formRow" style="height: 100px">
+      <div class="formLabelRequired">Body</div>
+      <div class="formField">
+        <textarea name="body" style="width: 325px; height: 100px" rows="24" cols="80"></textarea>
+      </div>
+    </div>
+            
+    <div class="formButtonRow">
+      <input type="submit" name="submit" value="Post">
+    </div>
+  </form>
+</div>
+{/if}
+
+{include file="footer.tmpl"}

@@ -1,0 +1,20 @@
+{* -*- html -*- *}
+{include file="header.tmpl"}
+
+<h2 class="line">Administrative Login</h2>
+
+<form method="post" action="/admin">
+  <div class="formRow">
+    <div class="formLabelRequired">Username</div>
+    <div class="formField"><input type="text" name="username" style="width: 200px;"></div>
+  </div>
+  <div class="formRow">
+    <div class="formLabelRequired">Password</div>
+    <div class="formField"><input type="password" name="password" style="width: 200px;"></div>
+  </div>
+  <div class="formButtonRow">
+    <input type="submit" name="submit" value="Login">
+  </div>
+</form>
+
+{include file="footer.tmpl"}

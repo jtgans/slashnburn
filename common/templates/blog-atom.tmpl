@@ -1,0 +1,30 @@
+{* -*- html -*- *}
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed version="0.3" xml:lang="{$config->getKey('global/language')}" xmlns="http://purl.org/atom/ns#">
+  <title>{$config->getKey('global/site_title')}</title>
+  <tagline>{$config->getKey('global/site_slogan')}</tagline>
+  <id>{$config->getKey('global/base_url')}/blog/atom</id>
+  <link rel="alternate" type="text/html" href="{$config->getKey('global/base_url')}" title="{$config->getKey('global/site_title')}" />
+  <generator url="{$config->getKey('cms/url')}" version="{$config->getKey('cms/version')}">{$config->getKey('cms/name')}</generator>
+      
+  <author>
+    <name>{$config->getKey('owner/first_name')} {$config->getKey('owner/last_name')}</name>
+    <url>{$config->getKey('global/base_url')}</url>
+    <email>{$config->getKey('owner/email')}</email>
+  </author>
+
+  <copyright type="text/plain" mode="escaped">Copyright {$smarty.now|date_format:"%Y"}, {$config->getKey('owner/first_name')} {$config->getKey('owner/last_name')}, All Rights Reserved.</copyright>
+  <modified>{$entries[0].timestamp}</modified>
+
+{foreach item=entry from=$entries}
+  <entry>
+    <id>{$config->getKey('global/base_url')}/blog/{$entry.blog_id}</id>
+    <title type="text/plain" mode="escaped">{$entry.title}</title>
+    <link rel="alternate" type="text/html" href="{$config->getKey('global/base_url')}/blog/{$entry.blog_id}" />
+    <modified>{$entry.timestamp}</modified>
+    <issued>{$entry.timestamp}</issued>
+    <content type="text/html" mode="escaped">{$entry.body}</content>
+  </entry>
+{/foreach}
+</feed>

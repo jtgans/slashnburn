@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   id="svg1"
+   sodipodi:version="0.32"
+   inkscape:version="0.38.1"
+   width="210mm"
+   height="297mm"
+   sodipodi:docbase="/home/june/Projects/slashnburn/docs"
+   sodipodi:docname="slashnburn-images.svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs
+     id="defs3">
+    <linearGradient
+       id="linearGradient828">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0.47580644;"
+         offset="0.0000000"
+         id="stop829" />
+      <stop
+         style="stop-color:#272727;stop-opacity:0.0000000;"
+         offset="1.0000000"
+         id="stop830" />
+    </linearGradient>
+    <linearGradient
+       xlink:href="#linearGradient828"
+       id="linearGradient831" />
+    <radialGradient
+       xlink:href="#linearGradient828"
+       id="radialGradient832"
+       cx="0.50000012"
+       cy="0.50000137"
+       r="0.54303414"
+       fx="0.50000012"
+       fy="0.50000137"
+       gradientUnits="objectBoundingBox"
+       spreadMethod="pad" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#272727"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="1.0000000"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.0000000"
+     inkscape:cx="253.62036"
+     inkscape:cy="457.84943"
+     inkscape:window-width="1270"
+     inkscape:window-height="971"
+     inkscape:window-x="0"
+     inkscape:window-y="26" />
+  <g
+     id="g843">
+    <path
+       sodipodi:type="arc"
+       style="fill:url(#radialGradient832);fill-opacity:0.75000000;fill-rule:evenodd;stroke-width:1.0000000pt;"
+       id="path827"
+       sodipodi:cx="388.84830"
+       sodipodi:cy="667.07660"
+       sodipodi:rx="447.88809"
+       sodipodi:ry="120.62441"
+       d="M 836.73639 667.07660 A 447.88809 120.62441 0 1 0 -59.039795,667.07660 A 447.88809 120.62441 0 1 0 836.73639 667.07660 z"
+       transform="matrix(0.657180,0.147062,-0.122384,0.741792,214.0658,21.05233)" />
+    <image
+       xlink:href="/home/june/snb-window.png"
+       sodipodi:absref="/home/june/snb-window.png"
+       width="516.08429"
+       height="605.06439"
+       id="image826"
+       x="126.04680"
+       y="224.57243"
+       transform="matrix(0.625231,0.000000,0.000000,0.625231,137.9816,120.4127)"
+       style="" />
+  </g>
+</svg>

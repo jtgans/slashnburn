@@ -1,0 +1,43 @@
+URL corresponds to nav entry ID.
+Nav entry ID corresponds to module ID + additional information for
+module.
+
+
+URL: http://www.site.com/index.php/<id or canonical name>
+
+Canonical name is looked up in nav, if not found, then looks for ID,
+failing that, throws a 404.
+
+If nav entry found, determine if it's a static URL or a module. If
+static URL, issue an HTTP Redirect header.
+
+
+If module, load module (all modules are loaded dynamically), create a
+new instance of the module and call $module->handler().
+
+Structure of a module:
+          - Main outside user object
+          - Internal admin object
+          - Any templates/assets the module requires
+          - Any other objects the module requires
+
+Outside user module consists of:
+
+        class MyModule extends SNBModule
+        {
+                function MyModule()
+                {
+                        // Load any initial info or setup information
+                        // here. MUST CALL parent::setup() before
+                        // anything else!
+                }
+
+                function handler()
+                {
+                        // Handle the page generation and business
+                        // logic here.
+                        //
+                        // Smarty object available in $this->smarty
+                        // Dolphin object available in $this->db
+                }
+        }

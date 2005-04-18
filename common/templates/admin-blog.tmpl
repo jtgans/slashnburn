@@ -1,0 +1,95 @@
+{* -*- html -*- *}
+{include file="admin-header.tmpl"}
+
+<div class="sectionHeader">
+  <h1 class="line">Blog Management</h1>
+</div>
+
+{if isset($errors)}
+<div class="formErrors">
+  {foreach from=$errors item=error}
+  {$error}<br />
+  {/foreach}
+</div>
+{/if}
+
+{if isset($message)}
+<div class="formMessage">{$message}</div>
+{/if}
+          
+<div class="form">
+  <form action="/admin/manage/blog" method="get">
+    <div class="sectionHeader">
+      <h2 class="line">Edit Previous Entries</h2>
+    </div>
+
+    <table border="0" width="100%" cellspacing="1" cellpadding="0">
+      <tr>
+        <td class="label" width="30%">Select an Entry</td>
+        <td class="input">
+          <select name="id" size="1" style="width: 75%">
+{foreach from=$entries item=entry}
+            <option value="{$entry.blog_id}">{$entry.timestamp|date_format:"%m/%d/%Y"} @ {$entry.timestamp|date_format:"%H:%M"} &mdash; {$entry.title}</option>
+{/foreach}
+          </select>
+          <input type="submit" name="mode" value="Edit" />
+          <input type="submit" name="mode" value="Delete" />
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+
+<div class="form">
+  <form action="/admin/manage/blog" method="post">
+    <div class="sectionHeader">
+      <h2 class="line">Add New Entry</h2>
+    </div>
+
+    <table border="0" width="100%">
+      <tr>
+        <td width="30%" class="labelRequired">Title</td>
+        <td class="input"><input type="text" style="width: 99%" name="title" value=""></td>
+      </tr>
+      <tr>
+        <td width="30%" class="label">
+          <span class="note" title="Separate multiple URLs with spaces">Trackback URLs</span>
+        </td>
+        <td class="input"><input type="text" style="width: 99%" name="trackback_urls"></td>
+      </tr>
+      <tr>
+        <td width="30%" class="label">Allow Comments</td>
+        <td class="input">
+          <select name="allow_comments" size="1" style="width: 99%">
+            <option value="2">Yes, allow comments</option>
+            <option value="1">No, do not allow comments</option>
+          </select>
+        </td>
+      </tr>
+    </table>
+    <br />
+
+    {* Have to do it this way because of IE's screwed up behavior *}
+    {* Sorry folks. =o(                        -- June            *}
+    <span class="label">Summary</span>
+    {assign  var="editor_name"   value="summary"}
+    {include file="htmlarea.tmpl"}
+    <br />
+    
+    <span class="labelRequired">Body</span>
+    {assign  var="editor_name"   value="body"}
+    {include file="htmlarea.tmpl"}
+
+    <br />
+    <table border="0" style="margin-top: 10px;" align="center">
+      <tr>
+        <td><input type="button" name="preview" id="preview" value="Preview"></td>
+        <td>
+          <input type="submit" name="mode" value="Post" />
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+
+{include file="admin-footer.tmpl"}

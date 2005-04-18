@@ -1,0 +1,28 @@
+{* -*- html -*- *}
+{include file="header.tmpl"}
+
+{if $config->getKey('blog/display_header')}
+<div class="sectionHeader">
+  {$config->getKey('blog/header')}
+</div>
+{/if}
+
+{foreach from=$entries item=entry}
+<div class="blogEntry">
+  <div class="sectionHeader">
+    <h2 class="line">{$entry.title}</h2>
+    <span class="subHead">
+      Posted at {$entry.timestamp|date_format:"%l:%M %p"} on {$entry.timestamp|date_format:"%A, %B %e, %Y"}
+      &nbsp;&mdash;&nbsp;
+  {if $entry.allow_comments}
+      <a href="/blog/{$entry.blog_id}">View/Post Comments (currently {$entry.comment_count})</a>
+  {else}
+      <a href="/blog/{$entry.blog_id}">View/Post Comments (currently disabled)</a>
+  {/if}
+    </span>
+  </div>
+  <div class="blogBody">{$entry.body}</div>
+</div>
+{/foreach}
+
+{include file="footer.tmpl"}

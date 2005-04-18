@@ -1,0 +1,41 @@
+{* -*- html -*- *}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+  <head>
+    <title>{$config->getKey('global/site_title')} .:. {$config->getKey('global/site_slogan')}</title>
+    
+    <link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="/assets/master.css">
+    <link rel="stylesheet" type="text/css" href="/themes/{$config->getKey('global/theme')}/theme.css">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  </head>
+
+  <body>
+    <div id="bodyContainer">
+      <div id="header">
+        <h1 class="masthead">{$config->getKey('global/site_title')}</h1>
+        <h4 class="masthead">{$config->getKey('global/site_slogan')}</h4>
+      </div>
+
+      <div class="clearfix">
+        <div id="nav">
+{foreach from=$nav->getNav() item=row key=key}
+          <div class="navRow">
+  {if $nav->isSelectedNav($key)}
+            <a class="navSelected" href="/{$row.module}/{$row.params}">{$row.caption}</a>
+    {if isset($row.children)}
+      {foreach from=$row.children item=child}
+              <a class="subnav" href="/{$child.module}/{$child.params}">{$child.caption}</a>
+      {/foreach}
+    {/if}
+  {else}
+            <a class="nav" href="/{$row.module}/{$row.params}">{$row.caption}</a>
+  {/if}
+          </div>
+{/foreach}
+        </div>
+
+        <div id="body">

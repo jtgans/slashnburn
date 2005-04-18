@@ -1,0 +1,11 @@
+{* -*- html -*- *}
+
+<textarea id="{$editor_id|default:'htmlarea'}"
+          name="{$editor_name|default:'editor'}"
+          style="width: {$editor_width|default:'99%'}; height: {$editor_height|default:'300px'};"
+          rows="{$editor_rows|default:'24'}"
+          cols="{$editor_cols|default:'80'}">{$editor_value|default:''}</textarea>
+
+<script type="text/javascript">
+initEditor("{$editor_id|default:'htmlarea'}");
+</script>

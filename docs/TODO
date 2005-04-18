@@ -1,0 +1,4 @@
+- Add the Google rel="nofollow" attribute to blog comments.
+- Content filter plugins
+  - Registers themselves to the system via the standard <Module>Filter.class.php file in their homes.
+  - Allows the content to be filtered each time it is displayed, thus providing things like smilies. =o)

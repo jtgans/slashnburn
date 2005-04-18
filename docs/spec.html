@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>Slash 'N Burn .:. Theme Reference</title>
+    <link rel="stylesheet" type="text/css" href="docs.css" />
+    <meta name="author" content="HTML code: June Tate; e-mail: june@theonelab.com; url: http://www.theonelab.com" />
+    <meta http-equiv="Content-Type" content="text/html; charseet=iso-8859-1" />
+  </head>
+
+  <body>
+    <div id="container">
+      <div id="header">
+        <h1>Slash 'N Burn: Specification</h1>
+      </div>
+
+      <div id="toc">
+        <h3>Table of Contents</h3>
+        <ol>
+          <li><a href="#1">General Requirements</a></li>
+          <li><a href="#2">Architecture Overview</a></li>
+        </ol>
+      </div>
+
+      <div id="body">
+        <div class="section">
+          <h2><a link="1">General Requirements</a></h2>
+          <p>All code written for <acronym title="Slash 'N
+          Burn">SNB</acronym> <u>must</u> conform to the following
+          requirements:</p>
+          <ul>
+            <li>Simple</li>
+            <li>Easy to read</li>
+            <li>Elegant (eg: solves the coding problem in a clean,
+                understandable fashion)</li>
+            <li>Commented via PHPDOC</li>
+          </ul>
+          <p>All XHTML code output to the browser <u>must</u> conform to
+          the following requirements:</p>
+          <ul>
+            <li>XHTML 1.0 Strict</li>
+            <li>No attempt to change layout or design is made (leave
+                this to the theme designer)</li>
+            <li>Focus is on content, not markup</li>
+            <li>Markup is clean and concise</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2><a link="2">Architecture Overview</a></h2>
+          <p>The <acronym title="Slash 'N Burn">SNB</acronym> system is
+          designed in an almost zen fashion -- each part of it performs
+          a distinct function in the most elegant way possible. The core
+          of the system is composed of several smaller parts:</p>
+          <dl>
+            <dt>Navigation</dt>
+            <dd>The navigation system is simply the nav bar which is
+                everpresent on every page that <acronym title="Slash 'N
+                Burn">SNB</acronym> displays. The navigation bar is completely
+                customizable, but attempts to keep track of which page the
+                user is on.</dd>
+            <dt>Templating / Theming</dt>
+            <dd>The templating system is composed entirely of the Smarty
+                template engine. Each site theme is composed of a simple
+                header, footer, CSS and images. All other code (other than the
+                header and footer) is currently not customizable, except via
+                CSS.</dd>
+            <dt>Modules</dt>
+            <dd></dd>
+            <dt>Administration Frontend</dt>
+            <dd></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

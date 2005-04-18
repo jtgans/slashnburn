@@ -1,0 +1,21 @@
+{* -*- html -*- *}
+{include file="header.tmpl"}
+
+<h2 class="line">We're Sorry...</h2>
+<p>An error ocurred that was internal to the system. The error message
+was:</p>
+<code>Error code {$error_code}: {$error_message}</code>
+
+{if $config->getKey('global/email_on_error') == "true"}
+<p>Please do not contact the webmaster about this error -- they have
+been automatically notified vie email that this has occurred, and
+should be looking into the issue shortly. Thank you for your patience
+while we work through this issue.</p>
+{else}
+<p>If you feel your have reached this page by mistake, please contact
+the <a href="mailto:{$config->getKey('owner/email')}">Webmaster</a>
+and let them know about the error message above. Thank you for your
+patience while we work through this issue.</p>
+{/if}
+
+{include file="footer.tmpl"}

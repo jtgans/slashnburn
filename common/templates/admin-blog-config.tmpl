@@ -1,0 +1,72 @@
+{* -*- html -*- *}
+{include file="admin-header.tmpl"}
+
+<div class="sectionHeader">
+  <h1 class="line">Blog Configuration</h1>
+</div>
+
+{if isset($message)}
+<div class="formMessage">{$message}</div>
+{/if}
+    
+<form action="/admin/config/blog" method="post">
+  <div class="form">
+    <div class="sectionHeader">
+      <h2 class="line">General Options</h2>
+    </div>
+
+    <table border="0" width="100%" cellspacing="1" cellpadding="0">
+      <tr>
+        <td class="label" width="30%">Number of Entries to Display</td>
+        <td class="input">
+          <select name="display" size="1" style="width: 90%">
+            <option value="5"  {if ($config->getKey('blog/display') == 5)}selected{/if}>5 entries</option>
+            <option value="10" {if ($config->getKey('blog/display') == 10)}selected{/if}>10 entries</option>
+            <option value="15" {if ($config->getKey('blog/display') == 15)}selected{/if}>15 entries</option>
+            <option value="20" {if ($config->getKey('blog/display') == 20)}selected{/if}>20 entries</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td class="label" width="30%">Display the Blog Header</td>
+        <td class="input">
+          <select name="display_header" size="1" style="width: 90%">
+            <option value="0" {if ($config->getKey('blog/display_header') == 0)}selected{/if}>Don't Display the Header</option>
+            <option value="1" {if ($config->getKey('blog/display_header') == 1)}selected{/if}>Display the Header</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td class="label" width="30%">Email when a Comment is Posted</td>
+        <td class="input">
+          <select name="email_on_comment" size="1" style="width: 90%">
+            <option value="0" {if ($config->getKey('blog/email_on_comment') == 0)}selected{/if}>No, Don't Email Me When a Comment is Posted</option>
+            <option value="1" {if ($config->getKey('blog/email_on_comment') == 1)}selected{/if}>Yes, Email Me When a Comment is Posted</option>
+          </select>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="form">
+    <div class="sectionHeader">
+      <h2 class="line">Blog Header</h2>
+      <p>Use this space to introduce your blog. Anything can be placed here, just like a regular blog entry, be it an image or whatever you want.</p>
+    </div>
+
+    {assign var="editor_name"  value="header"}
+    {assign var="editor_value" value=$header}
+    {include file="htmlarea.tmpl"}
+  </div>
+
+  <div class="form">
+    <table border="0" align="center" style="margin-top: 10px;">
+      <tr>
+        <td><input type="reset" value="Reset Values"></td>
+        <td><input type="submit" name="submit" value="Save Configuration"></td>
+      </tr>
+    </table>
+  </div>
+</form>
+
+{include file="admin-footer.tmpl"}

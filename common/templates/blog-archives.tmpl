@@ -1,0 +1,12 @@
+{* -*- html -*- *}
+{include file="header.tmpl"}
+
+<h2 class="line">Archives</h2>
+
+<ul>
+{foreach from=$entries item=entry}
+  <li><a href="/blog/{$entry.blog_id}">{$entry.title}</a> &mdash; {$entry.timestamp|date_format:"%l:%M %p"} on {$entry.timestamp|date_format:"%A, %B %e, %Y"}
+{/foreach}
+</ul>
+
+{include file="footer.tmpl"}

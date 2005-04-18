@@ -1,0 +1,23 @@
+{* -*- html -*- *}
+{include file="header.tmpl"}
+
+{if $page.title_visible == 1}
+<h2 class="line">{$page.title}</h2>
+
+<span class="subHead">
+{if $page.category_visible == 1}
+  Category: {$page.category}
+{/if}
+{if $page.category_visible == 1 && $page.timestamp_visible == 1}&mdash{/if}
+{if $page.timestamp_visible == 1}
+  Created on {$page.create_ts}
+  {if $page.modified_ts != null}
+    , modified on {$page.modified_ts}
+  {/if}
+{/if}
+</span>
+{/if}
+
+{$page.body}
+
+{include file="footer.tmpl"}

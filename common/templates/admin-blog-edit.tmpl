@@ -1,0 +1,118 @@
+{* -*- html -*- *}
+{include file="admin-header.tmpl"}
+
+<div class="sectionHeader">
+  <h1 class="line">Blog Management</h1>
+</div>
+
+{if isset($errors)}
+<div class="formErrors">
+  {foreach from=$errors item=error}
+  {$error}<br />
+  {/foreach}
+</div>
+{/if}
+
+{if isset($message)}
+<div class="formMessage">{$message}</div>
+{/if}
+
+<div class="form">
+  <form action="/admin/manage/blog" method="get">
+    <div class="sectionHeader">
+      <h2 class="line">Edit Previous Entries</h2>
+    </div>
+
+    <table border="0" width="100%" cellspacing="1" cellpadding="0">
+      <tr>
+        <td class="label" width="30%">Select an Entry</td>
+        <td class="input">
+          <select name="id" size="1" style="width: 80%">
+{foreach from=$entries item=row}
+            <option value="{$row.blog_id}">{$row.timestamp|date_format:"%m/%d/%Y"} @ {$row.timestamp|date_format:"%H:%M"} &mdash; {$row.title}</option>
+{/foreach}
+          </select>
+          <input type="submit" name="mode" value="Edit" />
+          <input type="submit" name="mode" value="Delete" />
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+
+<div class="form">
+  <form action="/admin/manage/blog" method="post">
+    <div class="sectionHeader">
+      <h2 class="line">Edit Entry</h2>
+    </div>
+
+    <table border="0" width="100%">
+      <tr>
+        <td width="30%" class="labelRequired">Title</td>
+        <td class="input"><input type="text" style="width: 99%" name="title" value="{$entry.title}"></td>
+      </tr>
+      <tr>
+        <td width="30%" class="label">
+          <span class="note" title="Separate multiple URLs with spaces">Trackback URLs</span>
+        </td>
+        <td class="input"><input type="text" style="width: 99%" name="trackback_urls"></td>
+      </tr>
+      <tr>
+        <td width="30%" class="label">Allow Comments</td>
+        <td class="input">
+          <select name="allow_comments" size="1" style="width: 99%">
+            <option value="2" {if $entry.allow_comments == 2}selected{/if}>Yes, allow comments</option>
+            <option value="1" {if $entry.allow_comments == 1}selected{/if}>No, do not allow comments</option>
+          </select>
+        </td>
+      </tr>
+    </table>
+
+    {* Have to do it this way because of IE's screwed up behavior *}
+    {* Sorry folks. =o(                        -- June            *}
+    <span class="label">Summary</span>
+    {assign  var="editor_name"   value="summary"}
+    {include file="htmlarea.tmpl"}
+
+    <span class="labelRequired">Body</span>
+    {assign  var="editor_name"   value="body"}
+    {include file="htmlarea.tmpl"}
+
+    <br />
+    <table border="0" style="margin-top: 10px;" align="center">
+      <tr>
+        <td><input type="button" name="preview" id="preview" value="Preview"></td>
+        <td>
+          <input type="hidden" name="id" value="{$entry.blog_id}" />
+          <input type="submit" name="mode" value="Update" />
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+
+<div class="form">
+  <div class="sectionHeader">
+    <h2 class="line">Manage Comments</h2>
+  </div>
+
+{if isset($entry.comments)}
+  {foreach from=$entry.comments item=comment}
+  <div class="commentEntry">
+    <div class="commentTitle">
+      <h3 class="line">{$comment.title}</h3>
+      <span class="subHead">
+        <a href="/admin/manage/blog/?id={$entry.blog_id}&comment_id={$comment.comment_id}&mode=delete_comment">Delete this Comment</a> &nbsp;&mdash;&nbsp;
+        Posted at {$comment.timestamp|date_format:"%l:%M %p"} on {$comment.timestamp|date_format:"%A, %B %e, %Y"} by {$comment.author} &lt;<a href="mailto:{$comment.email}">{$comment.email}</a>&gt;
+      </span>
+    </div>
+    <div class="commentBody">{$comment.body}</div>
+  </div>
+  {/foreach}
+{else}
+  <center><i>No comments to manage</i></center>
+{/if}
+
+</div>    
+
+{include file="admin-footer.tmpl"}
